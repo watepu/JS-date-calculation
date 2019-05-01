@@ -8,6 +8,7 @@
   <h1>日付計算</h1>
   <p>誕生日:<input type="text" name="birthday" id="birthday" value="1900-01-01"></p>
   <p><input type="button" value="計算する" onclick="getAge();"></p>
+  <p>生まれてから<span id="dayPast">???</span>日経過。大体<span id="age">???</span>歳です。</p>
 
   <script>
     'use strict';
@@ -20,7 +21,10 @@
         const diff = d2.getTime() - d1.getTime();  //計算結果をミリ秒に変換
         const dayPast = Math.floor(diff / (1000 * 60 * 60 * 24));
         // ミリ秒なので1000をかけた後、日付に直したいので、60秒、60分、24時間をかける。必ず()をつける
-        alert( dayPast + '日経過！');
+        const age = Math.floor(dayPast / 365.25);  //4年に１回はうるう年なので
+        document.getElementById('dayPast').innerHTML = dayPast;
+        document.getElementById('age').innerHTML = age;
+
     }
   </script>
 </body>
